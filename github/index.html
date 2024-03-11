@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Github</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.css" rel="stylesheet" />
     <script>
         tailwind.config = {
           theme: {
@@ -18,52 +19,169 @@
       </script>
 </head>
 <body>
-    <nav class="h-16 bg-gray-100 px-5 flex justify-between items-center bg-black border-b"> <!-- Navbar --> 
-
+    <nav class="bg-gray-100 px-5 flex justify-between items-center border-b py-4"> <!-- Navbar --> 
+        
         <div class="flex space-x-2 items-center"> <!-- Navbar left part -->
-            <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="100" height="100" viewBox="0 0 50 50" class="h-6 w-6 border-2 border-gray-300 py-2 px-2">
+            <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 50 50" class="h-7 w-7 border-2 border-gray-300 p-1 rounded-lg">
                 <path d="M 0 9 L 0 11 L 50 11 L 50 9 Z M 0 24 L 0 26 L 50 26 L 50 24 Z M 0 39 L 0 41 L 50 41 L 50 39 Z"></path>
             </svg>
     
             <svg xmlns="http://www.w3.org/2000/svg"  class="w-8 h-8 object-contain" viewBox="0 0 97.707 97.707">
                 <path d="M48.854 0C21.839 0 0 22 0 49.217c0 21.756 13.993 40.172 33.405 46.69 2.427.49 3.316-1.059 3.316-2.362 0-1.141-.08-5.052-.08-9.127-13.59 2.934-16.42-5.867-16.42-5.867-2.184-5.704-5.42-7.17-5.42-7.17-4.448-3.015.324-3.015.324-3.015 4.934.326 7.523 5.052 7.523 5.052 4.367 7.496 11.404 5.378 14.235 4.074.404-3.178 1.699-5.378 3.074-6.6-10.839-1.141-22.243-5.378-22.243-24.283 0-5.378 1.94-9.778 5.014-13.2-.485-1.222-2.184-6.275.486-13.038 0 0 4.125-1.304 13.426 5.052a46.97 46.97 0 0 1 12.214-1.63c4.125 0 8.33.571 12.213 1.63 9.302-6.356 13.427-5.052 13.427-5.052 2.67 6.763.97 11.816.485 13.038 3.155 3.422 5.015 7.822 5.015 13.2 0 18.905-11.404 23.06-22.324 24.283 1.78 1.548 3.316 4.481 3.316 9.126 0 6.6-.08 11.897-.08 13.526 0 1.304.89 2.853 3.316 2.364 19.412-6.52 33.405-24.935 33.405-46.691C97.707 22 75.788 0 48.854 0z" fill="#24292f"/>
             </svg>
-    
             <p>Dashboard</p>
         </div>
 
-        <div class="flex space-x-2"> <!-- Navbar right part -->
-            <form>
-                <label for="default-search" class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Search</label>
-                <div class="relative">
+        <div class="flex space-x-2 h-10 items-center"> <!-- Navbar right part -->
+            <form class="h-full">
+                <div class="relative flex items-center h-full">
                     <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
                         <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
                             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
                         </svg>
                     </div>
-                    <input type="search" id="default-search" class="block w-full p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50" placeholder="Your search..." required />
-                    <button type="submit" class="text-white absolute end-2.5 bottom-2.5 font-medium rounded-lg text-sm px-4 py-2 bg-stone-800">Search</button>
+                    <input type="search" id="default-search" class="block w-full h-full p-2 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50" placeholder="Your search..." required />
                 </div>
             </form>
-            
-            <div class="flex justify-center items-center border-2 px-2 py-2">
-                +
+
+            <button id="dropdownDefaultButton" data-dropdown-toggle="dropdown" class="h-full">
+                <span class="inline-flex items-center rounded-md bg-gray-50 px-2 py-1 text-gray-600 space-x-2 h-full border border-gray-300">
+                    <div>
+                        +
+                    </div>
+                    <div class="pl-2">
+                        <svg fill="#000000" width="8px" height="8px" viewBox="0 0 8 8" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M1.5 0l-1.5 1.5 4 4 4-4-1.5-1.5-2.5 2.5-2.5-2.5z" transform="translate(0 1)" />
+                        </svg>
+                    </div>
+                </span>
+            </button>
+
+            <!-- Dropdown menu -->
+            <div id="dropdown" class="z-10 hidden bg-white rounded-lg shadow w-44 dark:bg-gray-700">
+                <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownDefaultButton">
+                    <li>
+                        <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
+                            <div class="flex space-x-2 items-center">
+                                <div>
+                                    <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="12" height="12" viewBox="0 0 50 50">
+                                        <path d="M 5 4 C 3.3544268 4 2 5.3555411 2 7 L 2 16 L 2 26 L 2 43 C 2 44.644459 3.3544268 46 5 46 L 45 46 C 46.645063 46 48 44.645063 48 43 L 48 26 L 48 16 L 48 11 C 48 9.3549372 46.645063 8 45 8 L 18 8 C 18.08657 8 17.96899 8.000364 17.724609 7.71875 C 17.480227 7.437136 17.179419 6.9699412 16.865234 6.46875 C 16.55105 5.9675588 16.221777 5.4327899 15.806641 4.9628906 C 15.391504 4.4929914 14.818754 4 14 4 L 5 4 z M 5 6 L 14 6 C 13.93925 6 14.06114 6.00701 14.308594 6.2871094 C 14.556051 6.5672101 14.857231 7.0324412 15.169922 7.53125 C 15.482613 8.0300588 15.806429 8.562864 16.212891 9.03125 C 16.619352 9.499636 17.178927 10 18 10 L 45 10 C 45.562937 10 46 10.437063 46 11 L 46 13.1875 C 45.685108 13.07394 45.351843 13 45 13 L 5 13 C 4.6481575 13 4.3148915 13.07394 4 13.1875 L 4 7 C 4 6.4364589 4.4355732 6 5 6 z M 5 15 L 45 15 C 45.56503 15 46 15.43497 46 16 L 46 26 L 46 43 C 46 43.562937 45.562937 44 45 44 L 5 44 C 4.4355732 44 4 43.563541 4 43 L 4 26 L 4 16 C 4 15.43497 4.4349698 15 5 15 z"></path>
+                                    </svg>
+                                </div>
+                                <div>
+                                    New repository
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="border-b border-gray-300">
+                        <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
+                            <div class="flex space-x-2 items-center">
+                                <div>
+                                    <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="12" height="12" viewBox="0 0 50 50">
+                                        <path d="M 5 4 C 3.3544268 4 2 5.3555411 2 7 L 2 16 L 2 26 L 2 43 C 2 44.644459 3.3544268 46 5 46 L 45 46 C 46.645063 46 48 44.645063 48 43 L 48 26 L 48 16 L 48 11 C 48 9.3549372 46.645063 8 45 8 L 18 8 C 18.08657 8 17.96899 8.000364 17.724609 7.71875 C 17.480227 7.437136 17.179419 6.9699412 16.865234 6.46875 C 16.55105 5.9675588 16.221777 5.4327899 15.806641 4.9628906 C 15.391504 4.4929914 14.818754 4 14 4 L 5 4 z M 5 6 L 14 6 C 13.93925 6 14.06114 6.00701 14.308594 6.2871094 C 14.556051 6.5672101 14.857231 7.0324412 15.169922 7.53125 C 15.482613 8.0300588 15.806429 8.562864 16.212891 9.03125 C 16.619352 9.499636 17.178927 10 18 10 L 45 10 C 45.562937 10 46 10.437063 46 11 L 46 13.1875 C 45.685108 13.07394 45.351843 13 45 13 L 5 13 C 4.6481575 13 4.3148915 13.07394 4 13.1875 L 4 7 C 4 6.4364589 4.4355732 6 5 6 z M 5 15 L 45 15 C 45.56503 15 46 15.43497 46 16 L 46 26 L 46 43 C 46 43.562937 45.562937 44 45 44 L 5 44 C 4.4355732 44 4 43.563541 4 43 L 4 26 L 4 16 C 4 15.43497 4.4349698 15 5 15 z"></path>
+                                    </svg>
+                                </div>
+                                <div>
+                                    Import repository
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
+                            <div class="flex space-x-2 items-center">
+                                <div>
+                                    <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="12" height="12" viewBox="0 0 50 50">
+                                        <path d="M 5 4 C 3.3544268 4 2 5.3555411 2 7 L 2 16 L 2 26 L 2 43 C 2 44.644459 3.3544268 46 5 46 L 45 46 C 46.645063 46 48 44.645063 48 43 L 48 26 L 48 16 L 48 11 C 48 9.3549372 46.645063 8 45 8 L 18 8 C 18.08657 8 17.96899 8.000364 17.724609 7.71875 C 17.480227 7.437136 17.179419 6.9699412 16.865234 6.46875 C 16.55105 5.9675588 16.221777 5.4327899 15.806641 4.9628906 C 15.391504 4.4929914 14.818754 4 14 4 L 5 4 z M 5 6 L 14 6 C 13.93925 6 14.06114 6.00701 14.308594 6.2871094 C 14.556051 6.5672101 14.857231 7.0324412 15.169922 7.53125 C 15.482613 8.0300588 15.806429 8.562864 16.212891 9.03125 C 16.619352 9.499636 17.178927 10 18 10 L 45 10 C 45.562937 10 46 10.437063 46 11 L 46 13.1875 C 45.685108 13.07394 45.351843 13 45 13 L 5 13 C 4.6481575 13 4.3148915 13.07394 4 13.1875 L 4 7 C 4 6.4364589 4.4355732 6 5 6 z M 5 15 L 45 15 C 45.56503 15 46 15.43497 46 16 L 46 26 L 46 43 C 46 43.562937 45.562937 44 45 44 L 5 44 C 4.4355732 44 4 43.563541 4 43 L 4 26 L 4 16 C 4 15.43497 4.4349698 15 5 15 z"></path>
+                                    </svg>
+                                </div>
+                                <div>
+                                    New codespace
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="border-b border-gray-300">
+                        <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
+                            <div class="flex space-x-2 items-center">
+                                <div>
+                                    <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="12" height="12" viewBox="0 0 50 50">
+                                        <path d="M 5 4 C 3.3544268 4 2 5.3555411 2 7 L 2 16 L 2 26 L 2 43 C 2 44.644459 3.3544268 46 5 46 L 45 46 C 46.645063 46 48 44.645063 48 43 L 48 26 L 48 16 L 48 11 C 48 9.3549372 46.645063 8 45 8 L 18 8 C 18.08657 8 17.96899 8.000364 17.724609 7.71875 C 17.480227 7.437136 17.179419 6.9699412 16.865234 6.46875 C 16.55105 5.9675588 16.221777 5.4327899 15.806641 4.9628906 C 15.391504 4.4929914 14.818754 4 14 4 L 5 4 z M 5 6 L 14 6 C 13.93925 6 14.06114 6.00701 14.308594 6.2871094 C 14.556051 6.5672101 14.857231 7.0324412 15.169922 7.53125 C 15.482613 8.0300588 15.806429 8.562864 16.212891 9.03125 C 16.619352 9.499636 17.178927 10 18 10 L 45 10 C 45.562937 10 46 10.437063 46 11 L 46 13.1875 C 45.685108 13.07394 45.351843 13 45 13 L 5 13 C 4.6481575 13 4.3148915 13.07394 4 13.1875 L 4 7 C 4 6.4364589 4.4355732 6 5 6 z M 5 15 L 45 15 C 45.56503 15 46 15.43497 46 16 L 46 26 L 46 43 C 46 43.562937 45.562937 44 45 44 L 5 44 C 4.4355732 44 4 43.563541 4 43 L 4 26 L 4 16 C 4 15.43497 4.4349698 15 5 15 z"></path>
+                                    </svg>
+                                </div>
+                                <div>
+                                    New gist
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
+                            <div class="flex space-x-2 items-center">
+                                <div>
+                                    <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="12" height="12" viewBox="0 0 50 50">
+                                        <path d="M 5 4 C 3.3544268 4 2 5.3555411 2 7 L 2 16 L 2 26 L 2 43 C 2 44.644459 3.3544268 46 5 46 L 45 46 C 46.645063 46 48 44.645063 48 43 L 48 26 L 48 16 L 48 11 C 48 9.3549372 46.645063 8 45 8 L 18 8 C 18.08657 8 17.96899 8.000364 17.724609 7.71875 C 17.480227 7.437136 17.179419 6.9699412 16.865234 6.46875 C 16.55105 5.9675588 16.221777 5.4327899 15.806641 4.9628906 C 15.391504 4.4929914 14.818754 4 14 4 L 5 4 z M 5 6 L 14 6 C 13.93925 6 14.06114 6.00701 14.308594 6.2871094 C 14.556051 6.5672101 14.857231 7.0324412 15.169922 7.53125 C 15.482613 8.0300588 15.806429 8.562864 16.212891 9.03125 C 16.619352 9.499636 17.178927 10 18 10 L 45 10 C 45.562937 10 46 10.437063 46 11 L 46 13.1875 C 45.685108 13.07394 45.351843 13 45 13 L 5 13 C 4.6481575 13 4.3148915 13.07394 4 13.1875 L 4 7 C 4 6.4364589 4.4355732 6 5 6 z M 5 15 L 45 15 C 45.56503 15 46 15.43497 46 16 L 46 26 L 46 43 C 46 43.562937 45.562937 44 45 44 L 5 44 C 4.4355732 44 4 43.563541 4 43 L 4 26 L 4 16 C 4 15.43497 4.4349698 15 5 15 z"></path>
+                                    </svg>
+                                </div>
+                                <div>
+                                    New organization
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
+                            <div class="flex space-x-2 items-center">
+                                <div>
+                                    <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="12" height="12" viewBox="0 0 50 50">
+                                        <path d="M 5 4 C 3.3544268 4 2 5.3555411 2 7 L 2 16 L 2 26 L 2 43 C 2 44.644459 3.3544268 46 5 46 L 45 46 C 46.645063 46 48 44.645063 48 43 L 48 26 L 48 16 L 48 11 C 48 9.3549372 46.645063 8 45 8 L 18 8 C 18.08657 8 17.96899 8.000364 17.724609 7.71875 C 17.480227 7.437136 17.179419 6.9699412 16.865234 6.46875 C 16.55105 5.9675588 16.221777 5.4327899 15.806641 4.9628906 C 15.391504 4.4929914 14.818754 4 14 4 L 5 4 z M 5 6 L 14 6 C 13.93925 6 14.06114 6.00701 14.308594 6.2871094 C 14.556051 6.5672101 14.857231 7.0324412 15.169922 7.53125 C 15.482613 8.0300588 15.806429 8.562864 16.212891 9.03125 C 16.619352 9.499636 17.178927 10 18 10 L 45 10 C 45.562937 10 46 10.437063 46 11 L 46 13.1875 C 45.685108 13.07394 45.351843 13 45 13 L 5 13 C 4.6481575 13 4.3148915 13.07394 4 13.1875 L 4 7 C 4 6.4364589 4.4355732 6 5 6 z M 5 15 L 45 15 C 45.56503 15 46 15.43497 46 16 L 46 26 L 46 43 C 46 43.562937 45.562937 44 45 44 L 5 44 C 4.4355732 44 4 43.563541 4 43 L 4 26 L 4 16 C 4 15.43497 4.4349698 15 5 15 z"></path>
+                                    </svg>
+                                </div>
+                                <div>
+                                    New project
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                </ul>
             </div>
+
+            <button class="h-full">
+                <span class="inline-flex items-center rounded-md bg-gray-50 px-2 py-2 text-gray-600 space-x-2 h-full border border-gray-300">
+                    <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="15" height="15" viewBox="0 0 50 50">
+                        <path d="M 25 2 C 12.309534 2 2 12.309534 2 25 C 2 37.690466 12.309534 48 25 48 C 37.690466 48 48 37.690466 48 25 C 48 12.309534 37.690466 2 25 2 z M 25 4 C 36.609534 4 46 13.390466 46 25 C 46 36.609534 36.609534 46 25 46 C 13.390466 46 4 36.609534 4 25 C 4 13.390466 13.390466 4 25 4 z M 32.990234 15.986328 A 1.0001 1.0001 0 0 0 32.292969 16.292969 L 25 23.585938 L 17.707031 16.292969 A 1.0001 1.0001 0 0 0 16.990234 15.990234 A 1.0001 1.0001 0 0 0 16.292969 17.707031 L 23.585938 25 L 16.292969 32.292969 A 1.0001 1.0001 0 1 0 17.707031 33.707031 L 25 26.414062 L 32.292969 33.707031 A 1.0001 1.0001 0 1 0 33.707031 32.292969 L 26.414062 25 L 33.707031 17.707031 A 1.0001 1.0001 0 0 0 32.990234 15.986328 z"></path>
+                    </svg>
+                </span>
+            </button>
+
+            <button class="h-full">
+                <span class="inline-flex items-center rounded-md bg-gray-50 px-2 py-2 text-gray-600 space-x-2 h-full border border-gray-300">
+                    <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="15" height="15" viewBox="0 0 50 50">
+                        <path d="M 25 2 C 12.309534 2 2 12.309534 2 25 C 2 37.690466 12.309534 48 25 48 C 37.690466 48 48 37.690466 48 25 C 48 12.309534 37.690466 2 25 2 z M 25 4 C 36.609534 4 46 13.390466 46 25 C 46 36.609534 36.609534 46 25 46 C 13.390466 46 4 36.609534 4 25 C 4 13.390466 13.390466 4 25 4 z M 32.990234 15.986328 A 1.0001 1.0001 0 0 0 32.292969 16.292969 L 25 23.585938 L 17.707031 16.292969 A 1.0001 1.0001 0 0 0 16.990234 15.990234 A 1.0001 1.0001 0 0 0 16.292969 17.707031 L 23.585938 25 L 16.292969 32.292969 A 1.0001 1.0001 0 1 0 17.707031 33.707031 L 25 26.414062 L 32.292969 33.707031 A 1.0001 1.0001 0 1 0 33.707031 32.292969 L 26.414062 25 L 33.707031 17.707031 A 1.0001 1.0001 0 0 0 32.990234 15.986328 z"></path>
+                    </svg>
+                </span>
+            </button>
+
+            <button class="h-full">
+                <span class="inline-flex items-center rounded-md bg-gray-50 px-2 py-2 text-gray-600 space-x-2 h-full border border-gray-300">
+                    <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="15" height="15" viewBox="0 0 50 50">
+                        <path d="M 25 2 C 12.309534 2 2 12.309534 2 25 C 2 37.690466 12.309534 48 25 48 C 37.690466 48 48 37.690466 48 25 C 48 12.309534 37.690466 2 25 2 z M 25 4 C 36.609534 4 46 13.390466 46 25 C 46 36.609534 36.609534 46 25 46 C 13.390466 46 4 36.609534 4 25 C 4 13.390466 13.390466 4 25 4 z M 32.990234 15.986328 A 1.0001 1.0001 0 0 0 32.292969 16.292969 L 25 23.585938 L 17.707031 16.292969 A 1.0001 1.0001 0 0 0 16.990234 15.990234 A 1.0001 1.0001 0 0 0 16.292969 17.707031 L 23.585938 25 L 16.292969 32.292969 A 1.0001 1.0001 0 1 0 17.707031 33.707031 L 25 26.414062 L 32.292969 33.707031 A 1.0001 1.0001 0 1 0 33.707031 32.292969 L 26.414062 25 L 33.707031 17.707031 A 1.0001 1.0001 0 0 0 32.990234 15.986328 z"></path>
+                    </svg>
+                </span>
+            </button>
+
+            <button class="h-full">
+                <span class="inline-flex items-center rounded-md bg-gray-50 px-2 py-2 text-gray-600 pace-x-2 h-full border border-gray-300">
+                    <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="15" height="15" viewBox="0 0 50 50">
+                        <path d="M 25 2 C 12.309534 2 2 12.309534 2 25 C 2 37.690466 12.309534 48 25 48 C 37.690466 48 48 37.690466 48 25 C 48 12.309534 37.690466 2 25 2 z M 25 4 C 36.609534 4 46 13.390466 46 25 C 46 36.609534 36.609534 46 25 46 C 13.390466 46 4 36.609534 4 25 C 4 13.390466 13.390466 4 25 4 z M 32.990234 15.986328 A 1.0001 1.0001 0 0 0 32.292969 16.292969 L 25 23.585938 L 17.707031 16.292969 A 1.0001 1.0001 0 0 0 16.990234 15.990234 A 1.0001 1.0001 0 0 0 16.292969 17.707031 L 23.585938 25 L 16.292969 32.292969 A 1.0001 1.0001 0 1 0 17.707031 33.707031 L 25 26.414062 L 32.292969 33.707031 A 1.0001 1.0001 0 1 0 33.707031 32.292969 L 26.414062 25 L 33.707031 17.707031 A 1.0001 1.0001 0 0 0 32.990234 15.986328 z"></path>
+                    </svg>
+                </span>
+            </button>
+
     
-            <div class="flex justify-center items-center border-2 px-2 py-2">
-                +
-            </div>
-    
-            <div class="flex justify-center items-center border-2 px-2 py-2">
-                +
-            </div>
-    
-            <div class="flex justify-center items-center border-2 px-2 py-2">
-                +
-            </div>
-    
-            <div class="flex justify-center items-center border-2 px-2 py-2">
-                <img src="#" alt="" srcset="">
+            <div class="flex justify-center items-center px-2 py-2 ">
+                <img src="user.jpg" alt="" srcset="" class="object-cover h-6 w-6 rounded-full">
             </div>
         </div>
           
@@ -71,10 +189,10 @@
 
     <main class="max-w-full flex">
 
-        <section class="w-1/5 px-5 pt-5 text-sm font-medium h-screen border-r border-gray-300"> <!-- Left side -->
+        <section class="w-1/6 px-5 pt-5 text-sm font-sm h-screen border-r border-gray-300"> <!-- Left side -->
             <div class="flex justify-between items-center py-2">
                 <p>Top repositories</p>
-                <button>New</button>
+                <span class="rounded-md bg-green-300 px-2 py-1 text-xs font-medium text-green-700 ring-1 ring-inset ring-green-600/20">New</span>
             </div>
             <div>
                 <form class="flex items-center max-w-sm mx-auto py-2">
@@ -85,55 +203,51 @@
             </div>
             <div class="flex items-center space-x-2 py-2">
                 <img src="user.jpg" alt="" srcset="" class="h-5 rounded-full">
-                <p>37anton/oisudg-dpkfbfre-dezdez</p>
+                <a href="" class="hover:font-medium">37anton/oisudg-dpkfbfre-dezdez</a>
             </div>
             <div class="flex items-center space-x-2 py-2">
                 <img src="user.jpg" alt="" srcset="" class="h-5 rounded-full">
-                <p>37anton/oisudg-dpkfbfre-dezdez</p>
+                <a href="" class="hover:font-medium">37anton/oisudg-dpkfbfre-dezdez</a>
             </div>
             <div class="flex items-center space-x-2 py-2">
                 <img src="user.jpg" alt="" srcset="" class="h-5 rounded-full">
-                <p>37anton/oisudg-dpkfbfre-dezdez</p>
+                <a href="" class="hover:font-medium">37anton/oisudg-dpkfbfre-dezdez</a>
             </div>
             <div class="flex items-center space-x-2 py-2">
                 <img src="user.jpg" alt="" srcset="" class="h-5 rounded-full">
-                <p>37anton/oisudg-dpkfbfre-dezdez</p>
+                <a href="" class="hover:font-medium">37anton/oisudg-dpkfbfre-dezdez</a>
             </div>
             <div class="flex items-center space-x-2 py-2">
                 <img src="user.jpg" alt="" srcset="" class="h-5 rounded-full">
-                <p>37anton/oisudg-dpkfbfre-dezdez</p>
+                <a href="" class="hover:font-medium">37anton/oisudg-dpkfbfre-dezdez</a>
             </div>
             <div class="flex items-center space-x-2 py-2">
                 <img src="user.jpg" alt="" srcset="" class="h-5 rounded-full">
-                <p>37anton/oisudg-dpkfbfre-dezdez</p>
+                <a href="" class="hover:font-medium">37anton/oisudg-dpkfbfre-dezdez</a>
             </div>
             <div class="flex items-center space-x-2 py-2">
                 <img src="user.jpg" alt="" srcset="" class="h-5 rounded-full">
-                <p>37anton/oisudg-dpkfbfre-dezdez</p>
+                <a href="" class="hover:font-medium">37anton/oisudg-dpkfbfre-dezdez</a>
             </div>
             <div class="flex items-center space-x-2 py-2">
                 <img src="user.jpg" alt="" srcset="" class="h-5 rounded-full">
-                <p>37anton/oisudg-dpkfbfre-dezdez</p>
+                <a href="" class="hover:font-medium">37anton/oisudg-dpkfbfre-dezdez</a>
             </div>
             <div class="flex items-center space-x-2 py-2">
                 <img src="user.jpg" alt="" srcset="" class="h-5 rounded-full">
-                <p>37anton/oisudg-dpkfbfre-dezdez</p>
+                <a href="" class="hover:font-medium">37anton/oisudg-dpkfbfre-dezdez</a>
             </div>
             <div class="flex items-center space-x-2 py-2">
                 <img src="user.jpg" alt="" srcset="" class="h-5 rounded-full">
-                <p>37anton/oisudg-dpkfbfre-dezdez</p>
+                <a href="" class="hover:font-medium">37anton/oisudg-dpkfbfre-dezdez</a>
             </div>
             <div class="flex items-center space-x-2 py-2">
                 <img src="user.jpg" alt="" srcset="" class="h-5 rounded-full">
-                <p>37anton/oisudg-dpkfbfre-dezdez</p>
+                <a href="" class="hover:font-medium">37anton/oisudg-dpkfbfre-dezdez</a>
             </div>
             <div class="flex items-center space-x-2 py-2">
                 <img src="user.jpg" alt="" srcset="" class="h-5 rounded-full">
-                <p>37anton/oisudg-dpkfbfre-dezdez</p>
-            </div>
-            <div class="flex items-center space-x-2 py-2">
-                <img src="user.jpg" alt="" srcset="" class="h-5 rounded-full">
-                <p>37anton/oisudg-dpkfbfre-dezdez</p>
+                <a href="" class="hover:font-medium">37anton/oisudg-dpkfbfre-dezdez</a>
             </div>
 
             <p class="pt-5 mb-5">Recent</p>
@@ -142,7 +256,7 @@
             </div>
         </section>
 
-        <section class="h-16 w-3/5 pl-48 pr-8 pt-5 text-sm"> <!-- Middle side -->
+        <section class="h-16 w-3/6 pl-36 pr-0 pt-5 text-sm"> <!-- Middle side -->
             
             <div class="flex justify-between items-center"> <!-- Titre -->
                 <div>
@@ -150,7 +264,7 @@
                 </div>
                 <div class="flex space-x-4">
                     <div>
-                        <span class="text-blue-500 font-semibold">Send feedback</span>
+                        <a href=""><span class="text-blue-500 hover:text-blue-800 font-semibold">Send feedback</span></a>
                     </div>
                     <div>
                         Filter
@@ -158,17 +272,17 @@
                 </div>
             </div>
 
-            <div class="mt-5 border border-gray-400 p-2 bg-gradient-to-b from-gray-200 to-gray-100 rounded-lg mb-8 p-4">
+            <div class="mt-5 border border-gray-300 p-2 bg-gradient-to-b from-gray-100 via-purple-50 to-gray-50 rounded-lg mb-8 p-4">
                 <h3 class="text-xl py-2">
                     Updates to your homepage feed
                 </h3>
                 <p class="py-2">
                     We've combined the power of the Following feed with the For you feed so there's one place to discover content on GitHub. There's improved filtering so you can customize your feed exactly how you like it, and a shiny new visual design.
                 </p>
-                <p class="pt-2 text-blue-500 font-semibold py-2">Learn more</p>
+                <a href="" class="pt-2 text-blue-500 font-semibold py-2 hover:text-blue-800">Learn more</a>
             </div>
 
-            <div class="border border-gray-400 p-2 rounded-lg mb-8 pl-4">
+            <div class="border border-gray-300 p-2 rounded-lg mb-8 pl-4">
                 <div class="flex items-center space-x-4 py-4">
                     <div>
                         <img src="user.jpg" alt="" srcset="" class="object-contain h-14 rounded-full">
@@ -182,7 +296,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="h-16 flex flex-col bg-gray-100 p-2 rounded-lg">
+                <div class="h-16 flex flex-col bg-gray-50 p-2 rounded-lg">
                     <div class="flex space-x-4 pb-2">
                         <div>
                             <img src="user.jpg" alt="" class="object-contain h-6 rounded-full">
@@ -198,7 +312,7 @@
                 </div>
             </div>
 
-            <div class="border border-gray-400 p-2 rounded-lg mb-8 pl-4">
+            <div class="border border-gray-300 p-2 rounded-lg mb-8 pl-4">
                 <div class="flex items-center space-x-4 py-4">
                     <div>
                         <img src="user.jpg" alt="" srcset="" class="object-contain h-14 rounded-full">
@@ -212,7 +326,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="h-16 flex flex-col bg-gray-100 p-2 rounded-lg">
+                <div class="h-16 flex flex-col bg-gray-50 p-2 rounded-lg">
                     <div class="flex space-x-4 pb-2">
                         <div>
                             <img src="user.jpg" alt="" class="object-contain h-6 rounded-full">
@@ -228,7 +342,7 @@
                 </div>
             </div>
 
-            <div class="border border-gray-400 p-2 rounded-lg mb-8 pl-4">
+            <div class="border border-gray-300 p-2 rounded-lg mb-8 pl-4">
                 <div class="flex items-center space-x-4 py-4">
                     <div>
                         <img src="user.jpg" alt="" srcset="" class="object-contain h-14 rounded-full">
@@ -242,7 +356,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="h-16 flex flex-col bg-gray-100 p-2 rounded-lg">
+                <div class="h-16 flex flex-col bg-gray-50 p-2 rounded-lg">
                     <div class="flex space-x-4 pb-2">
                         <div>
                             <img src="user.jpg" alt="" class="object-contain h-6 rounded-full">
@@ -259,7 +373,7 @@
             </div>
         </section>
 
-        <section class="w-1/5 pt-5 text-sm px-5"> <!-- Right side -->
+        <section class="w-2/6 pt-5 text-sm px-5 pr-32"> <!-- Right side -->
             <div class="border border-gray-300 rounded-lg p-4 my-4">
                 <div class="px-2 font-semibold mb-4">
                     <p>Latest changes</p>
@@ -285,7 +399,7 @@
                         <time class="mb-1 font-light">3 days ago</time>
                         <p>GitHub Support Portal redesign: Toward a more personalized future</p>
                     </li>
-                    <a href="#" class="inline-flex items-center px-4 py-2 space-x-2 font-light">
+                    <a href="#" class="inline-flex items-center px-4 py-2 space-x-2 font-light hover:font-semibold">
                         <p>View changelog</p>
                         <svg class="w-3 h-3 ms-2 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
                             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
@@ -311,8 +425,8 @@
                                         github / codeql
                                     </div>
                                 </div>
-                                <div class="border border-gray-300 px-2">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
+                                <div class="border border-gray-300 p-1">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24">
                                         <path d="M12 .587l3.668 7.568 8.332 1.151-6.064 5.828 1.48 8.279-7.416-3.967-7.417 3.967 1.481-8.279-6.064-5.828 8.332-1.151z" fill="white" stroke="black" stroke-width="1"/>
                                     </svg>
                                 </div>
@@ -334,8 +448,8 @@
                                         github / codeql
                                     </div>
                                 </div>
-                                <div class="border border-gray-300 px-2">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
+                                <div class="border border-gray-300 p-1">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24">
                                         <path d="M12 .587l3.668 7.568 8.332 1.151-6.064 5.828 1.48 8.279-7.416-3.967-7.417 3.967 1.481-8.279-6.064-5.828 8.332-1.151z" fill="white" stroke="black" stroke-width="1"/>
                                     </svg>
                                 </div>
@@ -357,8 +471,8 @@
                                         github / codeql
                                     </div>
                                 </div>
-                                <div class="border border-gray-300 px-2">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
+                                <div class="border border-gray-300 p-1">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24">
                                         <path d="M12 .587l3.668 7.568 8.332 1.151-6.064 5.828 1.48 8.279-7.416-3.967-7.417 3.967 1.481-8.279-6.064-5.828 8.332-1.151z" fill="white" stroke="black" stroke-width="1"/>
                                     </svg>
                                 </div>
@@ -370,14 +484,10 @@
                             </div>
                         </div>
                     </div>
-
-
-                    
-
-
-
                 </div>
             </div>
         </section>
     </main>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
+
 </body>
