@@ -4,22 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Github</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.css" rel="stylesheet" />
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                colors: {
-                    clifford: '#da373d',
-                }
-                }
-            }
-        }
-    </script>
+    <link rel="stylesheet" href="styles/output.css">
+    <script src="scripts/themeToggle.js"></script>
 </head>
-<body class="">
-    <nav class="bg-gray-100 px-5 flex justify-between items-center border-b py-4 dark:bg-gray-700"> <!-- Navbar --> 
+<body>
+    <nav class="bg-gray-100 px-5 flex justify-between items-center border-b py-4 dark:bg-zinc-800"> <!-- Navbar --> 
         
         <div class="flex space-x-2 items-center"> <!-- Navbar left part -->
             <button id="dropdownCheckboxButton" data-dropdown-toggle="dropdownDefaultCheckbox" class="" type="button">
@@ -207,7 +196,7 @@
           
     </nav>
 
-    <main class="max-w-full flex dark:bg-gray-500">
+    <main class="max-w-full flex dark:bg-zinc-800 dark:text-gray-200">
 
         <section class="w-1/6 px-5 pt-5 text-sm font-sm h-screen border-r border-gray-300"> <!-- Left side -->
             <div class="flex justify-between items-center py-2">
@@ -292,7 +281,7 @@
                 </div>
             </div>
 
-            <div class="mt-5 border border-gray-300 p-2 bg-gradient-to-b from-gray-100 via-purple-50 to-gray-50 rounded-lg mb-8 p-4">
+            <div class="mt-5 border border-gray-300 p-2 bg-gradient-to-b from-gray-100 via-purple-50 to-gray-50 rounded-lg mb-8 dark:bg-none dark:bg-gray-700">
                 <h3 class="text-xl py-2">
                     Updates to your homepage feed
                 </h3>
@@ -509,26 +498,4 @@
         </section>
     </main>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            const checkbox = document.getElementById('checkbox-item-1');
-            const body = document.body;
-
-            // Vérifier le localStorage pour voir si le mode nuit était activé
-            if (localStorage.getItem('nightMode') === 'true') {
-                body.classList.add('dark');
-                checkbox.checked = true;
-            }
-            
-            checkbox.addEventListener('change', function () {
-                if (this.checked) {
-                body.classList.add('dark');
-                localStorage.setItem('nightMode', 'true');
-                } else {
-                body.classList.remove('dark');
-                localStorage.setItem('nightMode', 'false');
-                }
-            });
-        });
-    </script>
 </body>
